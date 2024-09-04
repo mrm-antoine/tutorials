@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
    <record id="estate_model_action" model="ir.actions.act_window">
-        <field name="name">Test action</field>
+        <field name="name">Estate properties</field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
    </record>
@@ -10,7 +10,7 @@
         <field name="name">estate.property.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree string="Channel">
+            <tree>
                 <field name="name"/>
                 <field name="postcode"/>
                 <field name="bedrooms"/>
@@ -18,6 +18,9 @@
                 <field name="expected_price"/>
                 <field name="selling_price"/>
                 <field name="date_availability"/>
+                <field name="property_type_id"/>
+                <field name="tag_ids" widget="many2many_tags"/>
+                <field name="offer_ids"/>
             </tree>
         </field>
     </record>
@@ -27,13 +30,17 @@
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-           <form string="Estate">
+           <form>
                <sheet>
                    <h1>
                        <field name="name"/>
                    </h1>
+                   <group>
+                       <field name="tag_ids" widget="many2many_tags"/>
+                   </group>
                     <group>
                         <group>
+                            <field name="property_type_id"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>
                         </group>
@@ -55,8 +62,25 @@
                                 <field name="garden_area"/>
                                 <field name="garden_orientation"/>
                                 <field name="active"/>
+                                <field name="total_area"/>
                             </group>
                         </page>
+                         <page string="Offers">
+                            <field name="offer_ids">
+                                <tree>
+                                    <field name="price"/>
+                                    <field name="partner_id"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="salesperson_id"/>
+                                <field name="buyer_id"/>
+                            </group>
+                        </page>
+
                     </notebook>
             </sheet>
             </form>
@@ -73,6 +97,7 @@
                 <field name="expected_price"/>
                 <field name="bedrooms"/>
                 <field name="living_area"/>
+                <field name="property_type_id"/>
                 <field name="facades"/>
                             <filter name="available" domain="['|',
                                             ('state','=', 'new'),

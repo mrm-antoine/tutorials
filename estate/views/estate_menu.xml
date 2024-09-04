@@ -7,7 +7,10 @@
 <!--        </menuitem>-->
 <!--    </menuitem>-->
 
-    <menuitem id="test_menu_root" name="Test Root Menu"/>
-    <menuitem id="test_first_level_menu" name="Test First Level" parent="test_menu_root"/>
-    <menuitem id="test_model_menu_action" action="estate.estate_model_action" parent="test_first_level_menu"/>
+    <menuitem id="estate_menu_root" name="Real estate"/>
+    <menuitem id="estate_first_level_menu_properties" name="Advertisements" parent="estate_menu_root"/>
+    <menuitem id="estate_first_level_menu_type" name="Settings" parent="estate_menu_root"/>
+    <menuitem id="estate_model_menu_action" action="estate.estate_model_action" parent="estate_first_level_menu_properties"/>
+    <menuitem id="estate_type_model_menu_action" action="estate.estate_type_model_action" parent="estate_first_level_menu_type"/>
+    <menuitem id="estate_tag_model_menu_action" action="estate.estate_tag_model_action" parent="estate_first_level_menu_type"/>
 </odoo>
