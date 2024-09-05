@@ -32,6 +32,10 @@
         <field name="arch" type="xml">
            <form>
                <sheet>
+                   <header>
+                        <button name="action_sold" type="object" string="SOLD"/>
+                        <button name="action_cancel" type="object" string="CANCEL"/>
+                   </header>
                    <h1>
                        <field name="name"/>
                    </h1>
@@ -40,12 +44,14 @@
                    </group>
                     <group>
                         <group>
+                            <field name="state"/>
                             <field name="property_type_id"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>
                         </group>
                         <group>
                             <field name="expected_price"/>
+                            <field name="best_price"/>
                             <field name="selling_price"/>
                         </group>
                     </group>
@@ -70,6 +76,10 @@
                                 <tree>
                                     <field name="price"/>
                                     <field name="partner_id"/>
+                                    <field name="validity"/>
+                                    <field name="date_deadline"/>
+                                    <button name="action_accept" type="object" icon="fa-check"/>
+                                    <button name="action_refuse" type="object" icon="fa-times"/>
                                     <field name="status"/>
                                 </tree>
                             </field>

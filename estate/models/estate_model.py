@@ -1,5 +1,6 @@
 from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 
 class EstateProperty(models.Model):
@@ -30,9 +31,51 @@ class EstateProperty(models.Model):
     tag_ids = fields.Many2many('estate.property.tag', string='Tags')
     offer_ids = fields.One2many('estate.property.offer', 'property_id', string='Offers')
     total_area = fields.Integer(compute="_compute_total_area",string='Total Area')
-    # best_price = fields.
+    best_price = fields.Float(compute="_compute_best_price", string='Best Price')
 
     @api.depends("garden_area", "living_area")
     def _compute_total_area(self):
         for record in self:
             record.total_area = record.garden_area + record.living_area
+
+    @api.depends("offer_ids.price")
+    def _compute_best_price(self):
+        for record in self:
+            if record.offer_ids:
+                record.best_price = max(of_rec.price for of_rec in record.offer_ids)
+            else:
+                record.best_price = 0
+        #  optimisation req
+        # res = self.env["estate.property.offer"].read_group(domain=[("property_id", "in", self.ids)], groupby="property_id", fields=["price:max"])
+        # map_zzz = {elt["property_id"][0]: elt["price"] for elt in res}
+        # for record in self:
+        #     record.best_price = map_zzz.get(record.id, 0) # max(of_rec.price for of_rec in record.offer_ids)
+
+        # [ val for val in sequence if cond ]              # sequence : List[Any]                List
+        # { key: val for key, val in sequence if cond }    # sequence : List[Tuple(Any, Any)]    Dict
+        # { val for val in sequence if cond }              # sequence : List[Any]                Set
+
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        if self.garden:
+            self.garden_area = 10
+            self.garden_orientation = "north"
+        else:
+            self.garden_area = None
+            self.garden_orientation = None
+            
+            
+    def action_sold(self):
+        for record in self:
+            if record.state == "canceled":
+                raise UserError("Canceled properties cannot be sold.")    
+            record.state = "sold"
+        return True
+    
+    def action_cancel(self):
+        for record in self:
+            if record.state == "sold":
+                raise UserError("Sold properties cannot be cancel.")    
+            record.state = "canceled"
+        return True
+    
