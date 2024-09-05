@@ -23,7 +23,6 @@
     'application': True,
     'installable': True,
 
-
     # any module necessary for this one to work correctly
     'depends': ['base', 'web', 'mail', 'awesome_gallery'],
 
