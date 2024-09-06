@@ -6,17 +6,19 @@ from odoo.exceptions import UserError
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "estate offer properties"
+    _order = "price desc"
 
     _sql_constraints = [
         ('check_price', 'CHECK (price >= 0)','The price must be strictly positive'),
     ]
     
     price = fields.Float(string="Price")
-    status = fields.Selection([("accepted", "Accepted"),("refused", "Refused")], string="Status", copy=False)
+    status = fields.Selection([("accepted", "Accepted"), ("refused", "Refused")], string="Status", copy=False)
     partner_id = fields.Many2one("res.partner", string="Partner", required=True)
     property_id = fields.Many2one("estate.property", string="Property", required=True, ondelete="cascade")
     validity = fields.Integer(string="Validity(days)", default=7)
     date_deadline = fields.Date(string="Deadline", compute="_compute_deadline", inverse="_inverse_deadline")
+    property_type_id = fields.Many2one(related="property_id.property_type_id", store=True)
     
     
     @api.depends("validity")
@@ -54,6 +56,7 @@ class EstatePropertyOffer(models.Model):
             if estate.state == "canceled":
                 raise UserError("You cannot reject offer on a canceled property.")
             if estate.state == "sold":
-                raise UserError("You cannot accept offer on a sold property.")
+                raise UserError("You cannot reject offer on a sold property.")
             record.status = "refused"
         return True
+

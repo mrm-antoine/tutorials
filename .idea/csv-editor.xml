@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="/awesome_tshirt/security/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/estate/security/ir.model.access.csv">
           <value>
             <Attribute>
@@ -10,7 +17,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/addons/l10n_pl/data/res.country.state.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../odoo-server/addons/test_website/security/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/addons/test_xlsx_export/ir.model.access.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -39,6 +60,20 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_converter/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_impex/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_search_panel/ir.model.access.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

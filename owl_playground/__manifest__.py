@@ -8,7 +8,7 @@
     'description': """
         Play with Owl in this playground module
     """,
-
+    'license': 'LGPL-3',
     'author': "Odoo",
     'website': "https://www.odoo.com",
 

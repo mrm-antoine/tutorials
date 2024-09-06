@@ -7,6 +7,7 @@ from odoo.tools import float_compare
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "estate properties"
+    _order = "id desc"
 
     _sql_constraints = [
         ('check_expected_price', 'CHECK (expected_price > 0)','The expected_price must be strictly positive'),
@@ -18,7 +19,6 @@ class EstateProperty(models.Model):
     postcode = fields.Char(string='Postcode')
     date_availability = fields.Date(string="Available From" ,default=lambda self:(fields.Datetime.now() + relativedelta(months=3)), copy=False)
     expected_price = fields.Float(required=True)
-    # expected_price = fields.Float(required=True, domain=[('expected_price', '>', 0)])
     selling_price = fields.Float(readonly=True, copy=False)
     bedrooms = fields.Integer(string='Bedrooms', default=2)
     living_area = fields.Integer(string='Living Area (sqm)')
@@ -31,7 +31,7 @@ class EstateProperty(models.Model):
         selection=[("north", "North"),("south", "South"),("east", "East"),("west", "West")],
     )
     active = fields.Boolean(string='Active')
-    state = fields.Selection(string='Status', selection=[("new", "New"),("offer_received", "Offer Received"), ("sold", "Sold"), ("canceled", "Canceled")], default="new")
+    state = fields.Selection(string='Status', selection=[("new", "New"),("offer_received", "Offer Received"), ("offer_accepted", "Offer Accepted"), ("sold", "Sold"), ("canceled", "Canceled")], default="new")
     property_type_id = fields.Many2one('estate.property.type', string='Property Type')
     buyer_id = fields.Many2one('res.partner', string='Buyer')
     salesperson_id = fields.Many2one('res.users', string='Salesman', default=lambda self: self.env.user)
@@ -39,9 +39,7 @@ class EstateProperty(models.Model):
     offer_ids = fields.One2many('estate.property.offer', 'property_id', string='Offers')
     total_area = fields.Integer(compute="_compute_total_area",string='Total Area')
     best_price = fields.Float(compute="_compute_best_price", string='Best Price')
-
     
-
 
     @api.depends("garden_area", "living_area")
     def _compute_total_area(self):
@@ -92,6 +90,6 @@ class EstateProperty(models.Model):
     @api.constrains('selling_price','expected_price')
     def _check_selling_price(self):
         for record in self:
-            if record.offer_ids and  float_compare(record.selling_price, record.expected_price * 0.90, precision_digits=2) < 0:
+            if record.offer_ids and float_compare(record.selling_price, record.expected_price * 0.90, precision_digits=2) < 0:
                 raise UserError("Selling price must be at least 90% of the expected price.")
         

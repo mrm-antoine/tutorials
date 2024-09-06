@@ -5,7 +5,7 @@
     'description': """
         Defines a new type of view ('awesome_gallery') which allows to visualize images.
     """,
-
+    'license': 'LGPL-3',
     'version': '0.1',
     'depends': ['web'],
     'data': [],
