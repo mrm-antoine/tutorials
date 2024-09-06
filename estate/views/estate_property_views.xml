@@ -76,13 +76,16 @@
                         </page>
                          <page string="Offers">
                             <field name="offer_ids" attrs="{'readonly': [('state', 'in', ['offer_received','sold','offer_accepted'])]}">
-                                <tree editable="top" decoration-success="status=='accepted'" decoration-danger="status=='refused'">
+                                <tree editable="top" decoration-success="status=='accepted'"
+                                      decoration-danger="status=='refused'">
                                     <field name="price"/>
                                     <field name="partner_id"/>
                                     <field name="validity"/>
                                     <field name="date_deadline"/>
-                                    <button name="action_accept" type="object" title="Accept" icon="fa-check" attrs="{'invisible': ['|', ('status', '=', 'accepted'), ('status', '=', 'refused')]}"/>
-                                    <button name="action_refuse" type="object" title="Refuse" icon="fa-times" attrs="{'invisible': ['|', ('status', '=', 'accepted'), ('status', '=', 'refused')]}"/>
+                                    <button name="action_accept" type="object" title="Accept" icon="fa-check"
+                                            attrs="{'invisible': ['|', ('status', '=', 'accepted'), ('status', '=', 'refused')]}"/>
+                                    <button name="action_refuse" type="object" title="Refuse" icon="fa-times"
+                                            attrs="{'invisible': ['|', ('status', '=', 'accepted'), ('status', '=', 'refused')]}"/>
                                     <field name="status"/>
                                 </tree>
                             </field>

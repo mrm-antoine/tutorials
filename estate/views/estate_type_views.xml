@@ -24,7 +24,8 @@
         <field name="arch" type="xml">
             <form>
                 <div class="oe_button_box" name="button_box">
-                    <button class="oe_stat_button" type="action" name="%(estate_offer_model_action)d" align="left" icon="fa-list" string="TOTO">
+                    <button class="oe_stat_button" type="action" name="%(estate_offer_model_action)d" align="left"
+                            icon="fa-list" string="TOTO">
                         <field name="offer_count" string="Offers" widget="statinfo"></field>
                     </button>
                 </div>
@@ -43,6 +44,6 @@
                 </notebook>
             </form>
         </field>
-        
+
     </record>
 </odoo>

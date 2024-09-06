@@ -10,14 +10,15 @@ class EstateProperty(models.Model):
     _order = "id desc"
 
     _sql_constraints = [
-        ('check_expected_price', 'CHECK (expected_price > 0)','The expected_price must be strictly positive'),
-        ('check_selling_price', 'CHECK (selling_price >= 0)','The selling_price must be positive'),
+        ('check_expected_price', 'CHECK (expected_price > 0)', 'The expected_price must be strictly positive'),
+        ('check_selling_price', 'CHECK (selling_price >= 0)', 'The selling_price must be positive'),
     ]
 
     name = fields.Char(string='Title', required=True)
-    description =  fields.Text()
+    description = fields.Text()
     postcode = fields.Char(string='Postcode')
-    date_availability = fields.Date(string="Available From" ,default=lambda self:(fields.Datetime.now() + relativedelta(months=3)), copy=False)
+    date_availability = fields.Date(string="Available From",
+                                    default=lambda self: (fields.Datetime.now() + relativedelta(months=3)), copy=False)
     expected_price = fields.Float(required=True)
     selling_price = fields.Float(readonly=True, copy=False)
     bedrooms = fields.Integer(string='Bedrooms', default=2)
@@ -28,18 +29,19 @@ class EstateProperty(models.Model):
     garden_area = fields.Integer()
     garden_orientation = fields.Selection(
         string='Garden Orientation',
-        selection=[("north", "North"),("south", "South"),("east", "East"),("west", "West")],
+        selection=[("north", "North"), ("south", "South"), ("east", "East"), ("west", "West")],
     )
     active = fields.Boolean(string='Active')
-    state = fields.Selection(string='Status', selection=[("new", "New"),("offer_received", "Offer Received"), ("offer_accepted", "Offer Accepted"), ("sold", "Sold"), ("canceled", "Canceled")], default="new")
+    state = fields.Selection(string='Status', selection=[("new", "New"), ("offer_received", "Offer Received"),
+                                                         ("offer_accepted", "Offer Accepted"), ("sold", "Sold"),
+                                                         ("canceled", "Canceled")], default="new")
     property_type_id = fields.Many2one('estate.property.type', string='Property Type')
     buyer_id = fields.Many2one('res.partner', string='Buyer')
     salesperson_id = fields.Many2one('res.users', string='Salesman', default=lambda self: self.env.user)
     tag_ids = fields.Many2many('estate.property.tag', string='Tags')
     offer_ids = fields.One2many('estate.property.offer', 'property_id', string='Offers')
-    total_area = fields.Integer(compute="_compute_total_area",string='Total Area')
+    total_area = fields.Integer(compute="_compute_total_area", string='Total Area')
     best_price = fields.Float(compute="_compute_best_price", string='Best Price')
-    
 
     @api.depends("garden_area", "living_area")
     def _compute_total_area(self):
@@ -71,25 +73,24 @@ class EstateProperty(models.Model):
         else:
             self.garden_area = None
             self.garden_orientation = None
-            
-            
+
     def action_sold(self):
         for record in self:
             if record.state == "canceled":
-                raise UserError("Canceled properties cannot be sold.")    
+                raise UserError("Canceled properties cannot be sold.")
             record.state = "sold"
         return True
-    
+
     def action_cancel(self):
         for record in self:
             if record.state == "sold":
-                raise UserError("Sold properties cannot be cancel.")    
+                raise UserError("Sold properties cannot be cancel.")
             record.state = "canceled"
         return True
-    
-    @api.constrains('selling_price','expected_price')
+
+    @api.constrains('selling_price', 'expected_price')
     def _check_selling_price(self):
         for record in self:
-            if record.offer_ids and float_compare(record.selling_price, record.expected_price * 0.90, precision_digits=2) < 0:
+            if record.offer_ids and float_compare(record.selling_price, record.expected_price * 0.90,
+                                                  precision_digits=2) < 0:
                 raise UserError("Selling price must be at least 90% of the expected price.")
-        
