@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherited_user_model_cxgthfghy" model="ir.ui.view">
+        <field name="name">res.users.inherited.model</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="Real Estate Property">
+                    <group>
+                        <field name="property_ids">
+                            <tree decoration-success="state=='offer_received'">
+                                <field name="name"/>
+                                <field name="property_type_id"/>
+                                <field name="postcode"/>
+                                <field name="living_area"/>
+                                <field name="bedrooms"/>
+                                <field name="expected_price"/>
+                                <field name="selling_price"/>
+                                <field name="state" visible="False"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

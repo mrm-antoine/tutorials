@@ -17,6 +17,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/addons/bus/security/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/addons/hr/security/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../odoo-server/addons/l10n_pl/data/res.country.state.csv">
           <value>
             <Attribute>
@@ -52,6 +66,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_access_rights/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_action_bindings/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_convert/ir.model.access.csv">
           <value>
             <Attribute>
@@ -66,6 +94,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_exceptions/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_http/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_impex/ir.model.access.csv">
           <value>
             <Attribute>
@@ -73,7 +115,63 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_inherit/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_inherits/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_limits/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_populate/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_read_group/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_rpc/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_search_panel/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_testing_utilities/ir.model.access.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../odoo-server/odoo/addons/test_uninstall/ir.model.access.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

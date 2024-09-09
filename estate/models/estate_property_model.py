@@ -94,3 +94,12 @@ class EstateProperty(models.Model):
             if record.offer_ids and float_compare(record.selling_price, record.expected_price * 0.90,
                                                   precision_digits=2) < 0:
                 raise UserError("Selling price must be at least 90% of the expected price.")
+
+    def unlink(self):
+        for record in self:
+            if record.state not in ['new', 'canceled']:
+                raise UserError("Only new or canceled properties can be unlink.")        
+            
+        return super().unlink()
+    
+
